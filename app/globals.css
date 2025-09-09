@@ -1,8 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* 80s VHS Fonts - Display font for headings/buttons only */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+/* Body font - keep Montserrat for readability */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    /* 80s + VHS Neon Color Palette */
+    --neon-magenta: #ff00a0;
+    --neon-cyan: #00f0ff;
+    --sunset: #ff7e00;
+    --midnight: #0d0221;
+
+    /* Additional VHS colors */
+    --vhs-pink: #ff5edb;
+    --vhs-purple: #dc0c83;
+    --vhs-blue: #262e49;
+    --vhs-grid: #fe18d3;
+
+    /* Practical Neon Palette (accessible + synthy) */
+    /* Surfaces */
+    --bg-900: #0a0614; /* midnight plum */
+    --bg-800: #120a22; /* panel/bg steps */
+    --bg-700: #1b0f33;
+
+    /* Accents */
+    --magenta-500: #ff2dae;
+    --magenta-300: #ff68c7; /* hover/soft glow */
+    --cyan-500: #00e5ff;
+    --cyan-300: #6befff;
+    --sunset-500: #ffa24c; /* small highlights only */
+
+    /* Text */
+    --text-100: #f3ecff; /* headings */
+    --text-200: #d6cce8; /* body */
+    --text-300: #a99dbc; /* sub labels */
+
+    /* Lines / Glass */
+    --line: #3a3053;
+    --glass: rgba(255, 255, 255, 0.06);
+
+    /* Glass/blur effects */
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-blur: 12px;
+}
 
 * {
     margin: 0;
@@ -11,6 +55,160 @@
     font-family: 'Montserrat', sans-serif;
     scroll-behavior: smooth;
     color-scheme: dark;
+}
+
+/* Prevent unintended horizontal scroll while preserving inner scrollers */
+html,
+body {
+    overflow-x: hidden;
+    /* Background gradient using accessible surfaces */
+    background: linear-gradient(180deg, var(--bg-900) 0%, var(--bg-700) 100%);
+    color: var(--text-200);
+}
+
+/* Heading/body color helpers */
+.h-text {
+    color: var(--text-100);
+}
+.b-text {
+    color: var(--text-200);
+}
+.s-text {
+    color: var(--text-300);
+}
+
+/* Display font for headings and buttons only */
+.font-display {
+    font-family: 'Orbitron', monospace;
+}
+
+/* CRT/Scanline Overlay - Global fixed overlay */
+.crt-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    opacity: 0.05;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 240, 255, 0.03) 2px,
+        rgba(0, 240, 255, 0.03) 4px
+    );
+    z-index: 9999;
+}
+
+/* Film Grain Layer */
+.film-grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.08;
+    background-image: radial-gradient(
+            circle at 20% 80%,
+            rgba(120, 119, 198, 0.3) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(255, 119, 198, 0.3) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            circle at 40% 40%,
+            rgba(120, 219, 255, 0.3) 0%,
+            transparent 50%
+        );
+    background-size: 100px 100px, 150px 150px, 200px 200px;
+    animation: grain 8s steps(10) infinite;
+    z-index: 9998;
+}
+
+@keyframes grain {
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+    10% {
+        transform: translate(-5%, -10%);
+    }
+    20% {
+        transform: translate(-15%, 5%);
+    }
+    30% {
+        transform: translate(7%, -25%);
+    }
+    40% {
+        transform: translate(-5%, 25%);
+    }
+    50% {
+        transform: translate(-15%, 10%);
+    }
+    60% {
+        transform: translate(15%, 0%);
+    }
+    70% {
+        transform: translate(0%, 15%);
+    }
+    80% {
+        transform: translate(3%, 35%);
+    }
+    90% {
+        transform: translate(-10%, 10%);
+    }
+}
+
+/* Neon Text Shadow Utilities */
+.text-neon-magenta {
+    text-shadow: 0 0 5px var(--magenta-500), 0 0 10px var(--magenta-500),
+        0 0 15px var(--magenta-500);
+}
+
+.text-neon-cyan {
+    text-shadow: 0 0 5px var(--cyan-500), 0 0 10px var(--cyan-500),
+        0 0 15px var(--cyan-500);
+}
+
+/* Soft Outer Glow Utilities */
+.glow-soft {
+    box-shadow: 0 0 20px rgba(255, 0, 160, 0.3), 0 0 40px rgba(255, 0, 160, 0.1);
+}
+
+.glow-cyan {
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), 0 0 40px rgba(0, 240, 255, 0.1);
+}
+
+/* Utility: Balanced text wrapping for headings/subheads */
+.text-balance {
+    text-wrap: balance;
+}
+
+/* Accessibility: Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .crt-overlay,
+    .film-grain {
+        animation: none;
+        opacity: 0.02;
+    }
+
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Mobile Performance: Static overlays on small screens */
+@media (max-width: 768px) {
+    .crt-overlay {
+        opacity: 0.02;
+    }
+
+    .film-grain {
+        animation: none;
+        opacity: 0.03;
+    }
 }
 
 .hash-span {
@@ -203,5 +401,118 @@
             -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.5),
             -2.6em 0em 0 0em rgba(255, 255, 255, 0.7),
             -1.8em -1.8em 0 0em #ffffff;
+    }
+}
+
+/* VHS Progress Bar */
+.ProgressBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--magenta-500), var(--cyan-500));
+    transform-origin: 0% 50%;
+    z-index: 60;
+    pointer-events: none;
+    filter: drop-shadow(0 0 6px rgba(255, 0, 160, 0.45))
+        drop-shadow(0 0 6px rgba(0, 240, 255, 0.45));
+}
+.ProgressBar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.12) 0 2px,
+        rgba(255, 255, 255, 0) 2px 4px
+    );
+    mix-blend-mode: screen;
+    opacity: 0.25;
+    animation: vhs-track 2.2s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+    .ProgressBar::after {
+        animation: none;
+    }
+}
+
+/* VHS Section Divider */
+.vhs-divider {
+    position: relative;
+    width: 100%;
+    max-width: 80rem;
+    margin: 4rem auto;
+    padding: 0 1.5rem;
+    height: 24px;
+}
+.vhs-divider__glow {
+    position: absolute;
+    left: 1.5rem;
+    right: 1.5rem;
+    top: 8px;
+    height: 10px;
+    filter: blur(8px);
+    background: linear-gradient(90deg, var(--magenta-500), var(--cyan-500));
+    opacity: 0.35;
+}
+.vhs-divider__bar {
+    position: absolute;
+    left: 1.5rem;
+    right: 1.5rem;
+    top: 10px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--magenta-500), var(--cyan-500));
+}
+.vhs-divider__noise {
+    position: absolute;
+    left: 1.5rem;
+    right: 1.5rem;
+    top: 5px;
+    height: 12px;
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.06) 0 2px,
+        rgba(255, 255, 255, 0) 2px 4px
+    );
+    mix-blend-mode: screen;
+    animation: vhs-track 2.2s linear infinite,
+        vhs-jitter 1.6s ease-in-out infinite;
+    opacity: 0.35;
+    pointer-events: none;
+}
+@keyframes vhs-track {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 200px 0;
+    }
+}
+@keyframes vhs-jitter {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(1px);
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .vhs-divider__noise {
+        animation: none;
+        opacity: 0.2;
+    }
+}
+
+/* Micro-interactions: tiny tracking wiggle and reduced-motion gating */
+.animate-tracking {
+    /* ≤1–2px subtle jitter using existing vhs-jitter keyframes */
+    animation: vhs-jitter 1.6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+    .animate-tracking,
+    .animate-flicker {
+        animation: none !important;
     }
 }

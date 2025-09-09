@@ -245,25 +245,57 @@ const clientWork = [
         id: 'honors',
         name: 'Honors Way Group',
         link: 'https://honorswaygroup.com/',
-        image: '/assets/projects/other/honors.png'
+        image: '/assets/projects/other/honors.png',
+        vhs: {
+            spineTitle: 'HONORS WAY',
+            labelColor: 'cyan',
+            stickers: ['Client', 'Web'],
+            year: '2024',
+            fontClass: 'font-display',
+            spineSizeClass: 'text-base md:text-lg'
+        }
     },
     {
         id: 'lance',
         name: 'Nostalgia Notes Records',
         link: 'https://www.nostalgianotesrecords.com/',
-        image: '/assets/projects/other/lance.png'
+        image: '/assets/projects/other/lance.png',
+        vhs: {
+            spineTitle: 'NOSTALGIA',
+            labelColor: 'sunset',
+            stickers: ['Client', 'Web'],
+            year: '2023',
+            fontClass: 'font-body',
+            spineSizeClass: 'text-sm md:text-base'
+        }
     },
     {
         id: 'shannon',
         name: 'Shannon Mosier',
         link: 'https://shannon-mosier-website.vercel.app/',
-        image: '/assets/projects/other/shannon.png'
+        image: '/assets/projects/other/shannon.png',
+        vhs: {
+            spineTitle: 'SHANNON',
+            labelColor: 'magenta',
+            stickers: ['Client', 'Web'],
+            year: '2024',
+            fontClass: 'font-body',
+            spineSizeClass: 'text-lg md:text-xl'
+        }
     },
     {
         id: 'prestige',
         name: 'Prestige at Mayhill',
         link: 'https://theprestigeatmayhill.com/',
-        image: '/assets/projects/other/prestige.png'
+        image: '/assets/projects/other/prestige.png',
+        vhs: {
+            spineTitle: 'PRESTIGE',
+            labelColor: 'mono',
+            stickers: ['Client', 'Web'],
+            year: '2024',
+            fontClass: 'font-display',
+            spineSizeClass: 'text-sm md:text-lg'
+        }
     }
 ];
 
@@ -272,7 +304,15 @@ const liveWebsites = [
         id: 'emoji-twitter',
         name: 'Twitter Clone (Emoji)',
         link: 'https://chirp-tau-ruddy.vercel.app/',
-        image: '/assets/projects/other/emoji-twitter.png'
+        image: '/assets/projects/other/emoji-twitter.png',
+        vhs: {
+            spineTitle: 'CHIRP',
+            labelColor: 'magenta',
+            stickers: ['Experiments', 'Web'],
+            year: '2023',
+            fontClass: 'font-display',
+            spineSizeClass: 'text-base md:text-lg'
+        }
     }
 ];
 
@@ -281,7 +321,15 @@ const threeJS = [
         id: 'synthwave-scene',
         name: 'Synthwave Scene',
         link: 'https://rtf-synthwave-scene-gadzzc9du-senpaisumpie.vercel.app/',
-        image: '/assets/projects/other/Synthwave.png'
+        image: '/assets/projects/other/Synthwave.png',
+        vhs: {
+            spineTitle: 'SYNTHWAVE',
+            labelColor: 'magenta',
+            stickers: ['Experiments', '3D'],
+            year: '2024',
+            fontClass: 'font-display',
+            spineSizeClass: 'text-lg md:text-xl'
+        }
     }
 ];
 
@@ -292,7 +340,7 @@ export const navLinks = [
     },
     {
         id: 'other',
-        title: 'Other Works'
+        title: 'More Projects'
     }
 ];
 
